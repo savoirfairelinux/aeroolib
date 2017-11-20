@@ -35,22 +35,12 @@
 #
 ##############################################################################
 
-__metaclass__ = type
-
 import re
-try:
-    # requires python 2.5+
-    from hashlib import md5
-except ImportError:
-    from md5 import md5
-
+from hashlib import md5
 import time
 import urllib
 import zipfile
-try:
-    from cStringIO import StringIO
-except ImportError:
-    from StringIO import StringIO
+from io import StringIO
 from copy import copy, deepcopy
 
 
@@ -95,8 +85,8 @@ STYLES = 'styles.xml'
 output_encode = genshi.output.encode
 EtreeElement = lxml.etree.Element
 
-TAB = "[%s]" % md5("&#x9;").hexdigest()
-NEW_LINE = "[%s]" % md5("&#xA;").hexdigest()
+TAB = "[%s]" % md5("&#x9;".encode('utf-8')).hexdigest()
+NEW_LINE = "[%s]" % md5("&#xA;".encode('utf-8')).hexdigest()
 
 # A note regarding OpenDocument namespaces:
 #

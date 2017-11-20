@@ -4,7 +4,7 @@
 # Reserved.
 #                    General contacts <info@alistek.com>
 #
-# DISCLAIMER: This module is licensed under GPLv3 or newer and 
+# DISCLAIMER: This module is licensed under GPLv3 or newer and
 # is considered incompatible with OpenERP SA "AGPL + Private Use License"!
 #
 # Copyright (c) 2007, 2008 OpenHex SPRL. (http://openhex.com) All Rights
@@ -35,21 +35,21 @@
 
 import traceback
 import warnings
-from cStringIO import StringIO
+from io import StringIO
 
 plugins = ['base', 'opendocument']
 
 for name in plugins:
     try:
         __import__('aeroolib.plugins.%s' % name)
-    except Exception, e:
+    except Exception as e:
         tb_file = StringIO()
 
-        print >> tb_file, ("Unable to load plugin '%s', you will not be able "
-                           "to use it" % name)
-        print >> tb_file
-        print >> tb_file, 'Original traceback:'
-        print >> tb_file, '-------------------'
+        print(tb_file, ("Unable to load plugin '%s', you will not be able "
+                        "to use it" % name))
+        print(tb_file)
+        print(tb_file, 'Original traceback:')
+        print(tb_file, '-------------------')
         traceback.print_exc(file=tb_file)
-        print >> tb_file
+        print(tb_file)
         warnings.warn(tb_file.getvalue())
