@@ -682,7 +682,12 @@ class Template(MarkupTemplate):
         xpath_expr = "//draw:frame[starts-with(@draw:name, 'image:')]"
         for draw in tree.xpath(xpath_expr, namespaces=self.namespaces):
             d_name = draw.attrib[draw_name][6:].strip()
-            draw.attrib[draw_name] = "Aeroo picture "
+
+            # Libreoffice will automatically allocate a name to the image frame
+            # If we let something in the name attribute, only the first 2
+            # frames will be rendered.
+            del draw.attrib[draw_name]
+
             attr_expr = "__aeroo_make_href(%s)" % d_name
             image_node = EtreeElement(draw_image,
                                       attrib={py_attrs: attr_expr},
