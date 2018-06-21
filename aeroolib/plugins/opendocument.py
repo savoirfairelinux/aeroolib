@@ -277,7 +277,6 @@ class Template(MarkupTemplate):
             c_path, s_path = doc + '/content.xml', doc + '/styles.xml'
             content = zf.read(c_path)
             styles = zf.read(s_path)
-
             c_parsed = template._parse(self.insert_directives(content),
                                        encoding)
             s_parsed = template._parse(self.insert_directives(styles),
@@ -1156,7 +1155,9 @@ class OOSerializer:
                     float(tag[0].text)
                     guess_type = 'float'
                     tag.attrib['{%s}value' % namespaces['office']] = tag[0].text
-                except (ValueError, TypeError):
+                    # AKRETION HACK https://github.com/aeroo/aeroolib/issues/7
+                    tag.attrib['{%s}value-type' % namespaces['calcext']] = guess_type
+                except (ValueError,TypeError):
                     guess_type = 'string'
             tag.attrib['{%s}value-type' % namespaces['office']] = guess_type
             del tag.attrib['guess_type']

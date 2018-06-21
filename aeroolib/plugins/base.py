@@ -4,7 +4,7 @@
 # Reserved.
 #                    General contacts <info@alistek.com>
 #
-# DISCLAIMER: This module is licensed under GPLv3 or newer and 
+# DISCLAIMER: This module is licensed under GPLv3 or newer and
 # is considered incompatible with OpenERP SA "AGPL + Private Use License"!
 #
 # Copyright (c) 2007, 2008 OpenHex SPRL. (http://openhex.com) All Rights
